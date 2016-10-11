@@ -4,6 +4,9 @@
 *.obj
 *.elf
 
+# IDE results
+.*.swp
+
 # Precompiled Headers
 *.gch
 *.pch
