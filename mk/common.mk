@@ -5,7 +5,8 @@
 COBOL = /usr/local/bin/cobc
 RM    = rm -Rfv
 
-STANDARD ?= cobol85
+STANDARD ?= default
+# cobol85
 
 ODIR = bin
 
