@@ -6,12 +6,8 @@
 APP = cobol-project-maker
 MAIN = $(APP).cbl
 CPYBOOKS = 
-EXE = $(APP).exe
-_dll = 
+TESTS_ARGS = coco-project
+_dll = create-makefile create-cobolfile
 
 include ../mk/common.mk
 
-test: all
-	./$(EXE) o.txt
-
-.PHONY: test

@@ -10,9 +10,11 @@ STANDARD ?= default
 
 ODIR = bin
 
-WARNS = -Wcolumn-overflow -Wall -Wterminator -W -std=$(STANDARD)
+WARNS = -Wcolumn-overflow -Wall -Wterminator -W -std=$(STANDARD) -fixed
 DEBUG =
 OPTIM =
+
+EXE = bin/$(APP).exe
 
 OPTIONS = $(WARNS) $(DEBUG) $(OPTIM)
 
@@ -30,11 +32,14 @@ clean:
 bin/lib%.so: %.cbl $(CPYBOOKS)
 	$(COBOL) $(OPTIONS) -m -o $@ $<
 
+test: all
+	cd $(ODIR) && ./$(notdir $(EXE)) $(TESTS_ARGS)
+
 $(EXE): $(MAIN) $(CPYBOOKS)
 ifdef _dll
-	$(COBOL) $(OPTIONS) -x -o $@ $< -L $(ODIR) -l $(_dll)
+	$(COBOL) $(OPTIONS) -x -o $@ $< -L $(ODIR) $(addprefix -l ,$(_dll))
 else
 	$(COBOL) $(OPTIONS) -x -o $@ $<
 endif
 
-.PHONY: all clean
+.PHONY: all clean test
