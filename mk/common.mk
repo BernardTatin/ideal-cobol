@@ -10,7 +10,7 @@ STANDARD ?= default
 
 ODIR = bin
 
-WARNS = -Wcolumn-overflow -Wall -Wterminator -W -std=$(STANDARD)
+WARNS = -Wcolumn-overflow -Wall -Wterminator -W -std=$(STANDARD) -fixed
 DEBUG =
 OPTIM =
 
@@ -33,7 +33,7 @@ bin/lib%.so: %.cbl $(CPYBOOKS)
 	$(COBOL) $(OPTIONS) -m -o $@ $<
 
 test: all
-	./$(EXE) $(TESTS_ARGS)
+	cd $(ODIR) && ./$(notdir $(EXE)) $(TESTS_ARGS)
 
 $(EXE): $(MAIN) $(CPYBOOKS)
 ifdef _dll
