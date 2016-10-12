@@ -14,6 +14,20 @@
 
       *> program entry point
        PROCEDURE DIVISION.
+      *>   Program inirialisation
+           perform 001-INIT.
+      *>   if we are her, init is good enough, tell ti to user        
+           DISPLAY "We will create the project " project-name
+           END-DISPLAY.
+      *>   create Makefile
+           CALL "create-makefile" USING CONTENT project-name
+           END-CALL.
+      *>   create source file
+           CALL "create-cobolfile" USING CONTENT project-name
+           END-CALL.
+           perform 900-TERMINATE.
+           
+       001-INIT SECTION.
       *>   reading the first argument of the comand line
       *>   put it in project-name.
       *>   Open Cobol specific I think, set -std of cobc at standard.
@@ -26,15 +40,14 @@
                DISPLAY "cobol-project-maker needs a project file name" 
                  UPON SYSERR
                END-DISPLAY
+      *>       ... and exit
                perform 900-TERMINATE
            END-IF.
-           DISPLAY "We will create the project " project-name
-           END-DISPLAY.
-           perform 900-TERMINATE.
            
        900-TERMINATE SECTION.
            STOP RUN.
 
       *> end of the game
-       STOP RUN.
+      *> unreachable statement, so we commet it
+      *> STOP RUN.
 
