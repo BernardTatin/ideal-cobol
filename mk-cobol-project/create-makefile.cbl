@@ -12,7 +12,11 @@
            FD  out-file.
            01  fline     PIC X(512).
          WORKING-STORAGE SECTION.
-           01  file-is-open    PIC 9 VALUE 0.
+       01  file-is-open    PIC 9 VALUE 0.
+       01  app-string.
+           05  app         pic X(16) value "APP = ".
+           05  prj-name    pic X(256).
+
          LINKAGE SECTION.
       *> project name, the first argument on the command line   
            01 project-name PIC X(256).
@@ -36,13 +40,13 @@
          open OUTPUT out-file.
          DISPLAY "Writing Makefile for " project-name, " project"
          END-DISPLAY.
-         WRITE fline FROM "#" AFTER ADVANCING 2 END-WRITE.
-         WRITE fline FROM "APP = cobol-project-maker" END-WRITE.
+         WRITE fline FROM "#" BEFORE ADVANCING 2 END-WRITE.
+           MOVE project-name TO prj-name.
+         WRITE fline FROM app-string END-WRITE.
          WRITE fline FROM "MAIN = $(APP).cbl" END-WRITE.
          WRITE fline FROM "CPYBOOKS = " END-WRITE.
-         WRITE fline FROM "TESTS_ARGS = coco-project" END-WRITE.
-         WRITE fline FROM "_dll = create-makefile create-cobolfile" 
-         END-WRITE.
+         WRITE fline FROM "TESTS_ARGS =" END-WRITE.
+         WRITE fline FROM "_dll =" BEFORE ADVANCING 2 END-WRITE.
          WRITE fline FROM "include ../mk/common.mk" END-WRITE.
 
          CLOSE out-file
