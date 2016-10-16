@@ -36,3 +36,9 @@
 *.su
 log
 *.log
+
+# fonts
+gitio/fonts/theleagueof-league-gothic/images/
+gitio/fonts/theleagueof-league-gothic/source/
+
+
