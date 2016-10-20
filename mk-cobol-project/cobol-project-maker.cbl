@@ -48,6 +48,6 @@
            STOP RUN.
 
       *> end of the game
-      *> unreachable statement, so we commet it
+      *> unreachable statement, so we comment it
       *> STOP RUN.
 
