@@ -1,56 +1,42 @@
        IDENTIFICATION DIVISION.
-         PROGRAM-ID. create-makefile.
-
-       ENVIRONMENT DIVISION.
-         input-output section.
-           file-control.
-             select out-file ASSIGN "Makefile.test"
-               organization line sequential. 
-
+       PROGRAM-ID. create-makefile.
        DATA DIVISION.
-         FILE SECTION.
-           FD  out-file.
-           01  fline     PIC X(512).
-         WORKING-STORAGE SECTION.
-       01  file-is-open    PIC 9 VALUE 0.
-       01  app-string.
-           05  app         pic X(16) value "APP = ".
-           05  prj-name    pic X(256).
-
-         LINKAGE SECTION.
+       WORKING-STORAGE SECTION.
+       01 line-app PIC X(256) VALUE "APP = :".
+       01 template.
+               05 line-01 PIC X(256) VALUE ":".
+               05 line-02 PIC X(256) VALUE "MAIN = $(APP).cbl:".
+               05 line-03 PIC X(256) VALUE "CPYBOOKS = :".
+               05 line-04 PIC X(256) VALUE "TESTS_ARGS = coco-project:".
+               05 line-05 PIC X(256) VALUE "_dll = create-makefile" &
+               " create-cobolfile:".
+               05 line-06 PIC X(256) VALUE ":".
+               05 line-07 PIC X(256) VALUE "include ../mk/common.mk:".
+       01 all-lines REDEFINES template.
+               05 one-line OCCURS 7 PIC X(256).
+       01 i PIC 9.
+       01 blen PIC 999.
+       01 buffer PIC X(256) USAGE DISPLAY.
+       LINKAGE SECTION.
       *> project name, the first argument on the command line   
-           01 project-name PIC X(256).
-
-       PROCEDURE DIVISION USING project-name.
-       DECLARATIVES.
-       out-file-error SECTION.
-           USE AFTER ERROR ON out-file.
-           DISPLAY "An error occurred while using output.txt."
-               UPON SYSERR
-           END-DISPLAY.
-           if file-is-open = 1 then
-              display "Closing file..."
-              end-display
-              CLOSE out-file
-           end-if.
-           STOP RUN.
-       END DECLARATIVES.
-
+       01 project-name PIC X(256).
+           PROCEDURE DIVISION USING project-name.
        prog.
-         open OUTPUT out-file.
-         DISPLAY "Writing Makefile for " project-name, " project"
-         END-DISPLAY.
-         WRITE fline FROM "#" BEFORE ADVANCING 2 END-WRITE.
-           MOVE project-name TO prj-name.
-         WRITE fline FROM app-string END-WRITE.
-         WRITE fline FROM "MAIN = $(APP).cbl" END-WRITE.
-         WRITE fline FROM "CPYBOOKS = " END-WRITE.
-         WRITE fline FROM "TESTS_ARGS =" END-WRITE.
-         WRITE fline FROM "_dll =" BEFORE ADVANCING 2 END-WRITE.
-         WRITE fline FROM "include ../mk/common.mk" END-WRITE.
-
-         CLOSE out-file
-         EXIT PROGRAM.
+           STRING line-app DELIMITED BY ":" 
+           project-name DELIMITED BY SPACES
+           INTO buffer
+           END-STRING.
+           DISPLAY buffer END-DISPLAY.
+           PERFORM VARYING i FROM 1 BY 1 UNTIL i > 7
+               MOVE "#" TO buffer
+               STRING one-line(i) DELIMITED BY ":" INTO buffer
+               END-STRING
+               MOVE FUNCTION LENGTH ( FUNCTION TRIM (buffer TRAILING) )
+               TO blen
+               DISPLAY buffer(1:blen) 
+               END-DISPLAY
+           END-PERFORM.
+           EXIT PROGRAM.
       *> emergency exit
        900-TERMINATE SECTION.
            if file-is-open = 1 then
@@ -59,8 +45,8 @@
               CLOSE out-file
            end-if.
            DISPLAY "FATAL ERROR when witing Makefile, exit"
-              UPON SYSERR
+           UPON SYSERR
            END-DISPLAY.
            STOP RUN.
 
-       END PROGRAM create-makefile.
+           END PROGRAM create-makefile.

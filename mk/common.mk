@@ -2,7 +2,7 @@
 # common.mk
 #
 
-COBOL = /usr/local/bin/cobc
+COBOL = cobc
 RM    = rm -Rfv
 
 STANDARD ?= default

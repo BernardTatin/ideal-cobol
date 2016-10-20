@@ -1,14 +1,21 @@
        IDENTIFICATION DIVISION.
          PROGRAM-ID. create-cobolfile.
        DATA DIVISION.
+         WORKING-STORAGE SECTION.
+           01 buffer PIC X(256).
          LINKAGE SECTION.
       *> project name, the first argument on the command line   
            01 project-name PIC X(256).
        PROCEDURE DIVISION USING project-name.
        prog.
-         DISPLAY "Writing cobolfile for " project-name, " project"
-         END-DISPLAY.
-         EXIT PROGRAM.
+           STRING "Writing source file for " DELIMITED BY SIZE
+               project-name DELIMITED BY SPACES
+               " project" DELIMITED BY SIZE
+               INTO buffer
+           END-STRING.
+           DISPLAY buffer
+           END-DISPLAY.
+           EXIT PROGRAM.
       *> emergency exit
        900-TERMINATE SECTION.
            DISPLAY "FATAL ERROR when witing cobolfile, exit"
