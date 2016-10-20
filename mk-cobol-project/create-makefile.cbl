@@ -39,6 +39,11 @@
            EXIT PROGRAM.
       *> emergency exit
        900-TERMINATE SECTION.
+           if file-is-open = 1 then
+              display "Closing file..."
+              end-display
+              CLOSE out-file
+           end-if.
            DISPLAY "FATAL ERROR when witing Makefile, exit"
            UPON SYSERR
            END-DISPLAY.
