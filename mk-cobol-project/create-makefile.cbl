@@ -1,5 +1,6 @@
        IDENTIFICATION DIVISION.
        PROGRAM-ID. create-makefile.
+
        DATA DIVISION.
        WORKING-STORAGE SECTION.
        01 line-app PIC X(256) VALUE "APP = :".
@@ -17,12 +18,14 @@
        01 i PIC 9.
        01 blen PIC 999.
        01 buffer PIC X(256) USAGE DISPLAY.
+       01 out-buffer PIC X(256).
        LINKAGE SECTION.
-      *> project name, the first argument on the command line   
+      *> project name, the first argument on the command line
        01 project-name PIC X(256).
-           PROCEDURE DIVISION USING project-name.
+
+       PROCEDURE DIVISION USING project-name.
        prog.
-           STRING line-app DELIMITED BY ":" 
+           STRING line-app DELIMITED BY ":"
            project-name DELIMITED BY SPACES
            INTO buffer
            END-STRING.
@@ -30,17 +33,12 @@
            PERFORM VARYING i FROM 1 BY 1 UNTIL i > 7
                MOVE "#" TO buffer
                MOVE one-line(i) to buffer
-      *         STRING one-line(i) DELIMITED BY ":" INTO buffer
-      *         END-STRING
-               MOVE FUNCTION LENGTH ( FUNCTION TRIM (buffer TRAILING) )
-               TO blen
-               DISPLAY buffer(1:blen) 
-               END-DISPLAY
+               CALL "trimright" USING CONTENT buffer
            END-PERFORM.
            EXIT PROGRAM.
       *> emergency exit
        900-TERMINATE SECTION.
-           DISPLAY "FATAL ERROR when witing Makefile, exit"
+           DISPLAY "FATAL ERROR when writing Makefile, exit"
            UPON SYSERR
            END-DISPLAY.
            STOP RUN.
