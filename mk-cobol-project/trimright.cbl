@@ -1,35 +1,23 @@
        IDENTIFICATION DIVISION.
-       PROGRAM-ID. trimright.
+       PROGRAM-ID. trimright IS INITIAL.
 
        DATA DIVISION.
+       WORKING-STORAGE SECTION.
        01 blen PIC 99999.
        LINKAGE SECTION.
-      *> project name, the first argument on the command line   
-       01 project-name PIC X(256).
+       01 full-string pic x ANY LENGTH.
 
-       PROCEDURE DIVISION USING project-name.
+       PROCEDURE DIVISION USING full-string.
        prog.
-           STRING line-app DELIMITED BY ":" 
-           project-name DELIMITED BY SPACES
-           INTO buffer
-           END-STRING.
-           DISPLAY buffer END-DISPLAY.
-           PERFORM VARYING i FROM 1 BY 1 UNTIL i > 7
-               MOVE "#" TO buffer
-               STRING one-line(i) DELIMITED BY ":" INTO buffer
-               END-STRING
-               MOVE FUNCTION LENGTH ( FUNCTION TRIM (buffer TRAILING) )
-               TO blen
-               DISPLAY buffer(1:blen) 
-               END-DISPLAY
-           END-PERFORM.
+           MOVE FUNCTION LENGTH ( FUNCTION TRIM (full-string TRAILING) )
+           TO blen.
+           if blen > 0 then
+              display full-string(1:blen) end-display
+           else
+              DISPLAY '##'
+              END-DISPLAY
+           end-if.
            EXIT PROGRAM.
-      *> emergency exit
-       900-TERMINATE SECTION.
-           DISPLAY "FATAL ERROR when witing Makefile, exit"
-           UPON SYSERR
-           END-DISPLAY.
-           STOP RUN.
 
            END PROGRAM trimright.
 
