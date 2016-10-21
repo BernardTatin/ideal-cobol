@@ -4,7 +4,7 @@
        DATA DIVISION.
        WORKING-STORAGE SECTION.
 
-       78 STRING-LEN VALUE 128.
+       78 STRING-LEN VALUE 92.
        78 BUFFER-LEN VALUE 512.
        78 TABLE-SIZE VALUE 13.
 
@@ -23,7 +23,7 @@
                05 line-01 PIC X(STRING-LEN) VALUE "#".
                05 line-04 PIC X(STRING-LEN) VALUE "TESTS-ARGS =".
                05 line-02 PIC X(STRING-LEN) VALUE "MAIN = $(APP).cbl".
-               05 line-03 PIC X(STRING-LEN) VALUE "CPYBOOKS = ".
+               05 line-03 PIC X(STRING-LEN) VALUE "CPYBOOKS =".
                05 line-05 PIC X(STRING-LEN) VALUE "_dll = create-" &
                   "makefile create-cobolfile".
                05 line-06 PIC X(STRING-LEN) VALUE "#".
@@ -31,7 +31,7 @@
                   "common.mk".
        01 all-lines REDEFINES template.
                05 one-line OCCURS TABLE-SIZE PIC X(STRING-LEN).
-       01 i PIC 9.
+       01 i PIC 99.
        01 buffer PIC X(BUFFER-LEN).
        LINKAGE SECTION.
       *> project name, the first argument on the command line
@@ -53,8 +53,13 @@
            PERFORM VARYING i FROM 1 BY 1 UNTIL i > TABLE-SIZE
       *        MOVE "#" TO buffer
       *        MOVE one-line(i) to buffer
-               DISPLAY "--> " i
+      *         DISPLAY "i is --> " i
+      *         end-display
+      *         if i < 1 then
+      *          perform  900-TERMINATE
+      *         end-if
                CALL "trimright" USING CONTENT one-line(i)
+               end-call
            END-PERFORM.
            EXIT PROGRAM.
       *> emergency exit
