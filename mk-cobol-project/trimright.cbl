@@ -1,5 +1,5 @@
        IDENTIFICATION DIVISION.
-       PROGRAM-ID. trimright.
+       PROGRAM-ID. trimright IS INITIAL.
 
        DATA DIVISION.
        WORKING-STORAGE SECTION.
@@ -13,7 +13,7 @@
            TO blen.
            DISPLAY blen " -- " END-DISPLAY.
            if blen > 0 then
-              if blen = 256 then
+              if blen > 20 then
                 display full-string(1:20) end-display
               else
                 DISPLAY full-string(1:blen) END-DISPLAY
