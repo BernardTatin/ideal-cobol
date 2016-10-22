@@ -58,7 +58,7 @@
       *         if i < 1 then
       *          perform  900-TERMINATE
       *         end-if
-               CALL "trimright" USING CONTENT one-line(i)
+               CALL "trimright-display" USING CONTENT one-line(i)
                end-call
            END-PERFORM.
            EXIT PROGRAM.
