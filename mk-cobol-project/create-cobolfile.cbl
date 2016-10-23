@@ -64,7 +64,6 @@
        900-TERMINATE SECTION.
            DISPLAY "FATAL ERROR when writing Cobol source file, exit"
             UPON SYSERR
-           END-DISPLAY.
            STOP RUN.
 
        END PROGRAM create-cobolfile.

@@ -12,11 +12,10 @@
            MOVE FUNCTION LENGTH ( FUNCTION TRIM (full-string TRAILING) )
            TO blen.
            if blen > 0 then
-              display full-string(1:blen) end-display
-           else
+              DISPLAY full-string(1:blen)
+           ELSE
               DISPLAY '##'
-              END-DISPLAY
-           end-if.
+           END-IF.
            EXIT PROGRAM.
 
        END PROGRAM trimright-display.

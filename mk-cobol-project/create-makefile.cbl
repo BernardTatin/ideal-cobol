@@ -70,7 +70,6 @@
        900-TERMINATE SECTION.
            DISPLAY "FATAL ERROR when writing Makefile, exit"
             UPON SYSERR
-           END-DISPLAY.
            STOP RUN.
 
            END PROGRAM create-makefile.
