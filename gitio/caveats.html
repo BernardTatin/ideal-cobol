@@ -10,7 +10,7 @@
 		<link rel="stylesheet" type="text/css" media="screen" href="fonts/theleagueof-league-gothic/webfonts/stylesheet.css">
 		<link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
 
-		<title>Ideal-cobol, introduction</title>
+		<title>Ideal-cobol, caveats</title>
 	</head>
 
 	<body>
@@ -20,7 +20,7 @@
 			<header class="inner">
 				<a id="forkme_banner" href="https://github.com/BernardTatin/ideal-cobol">View on GitHub</a>
 
-				<h1 id="project_title">Ideal-cobol, introduction</h1>
+				<h1 id="project_title">Ideal-cobol, caveats</h1>
 				<h2 id="project_tagline">80&#39;s are not dead, but I don't like disco...</h2>
 				<menu>
 					<ul>
@@ -41,22 +41,11 @@
 		<div id="main_content_wrap" class="outer">
 			<section id="main_content" class="inner">
 				<h3>
-					<a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>I must remembre what I am doing</h3>
+					<a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Ye who wrote C all your life...</h3>
 
-				<p>I'm a dreamer who plays with his dogs, who read computing stuff and poetry... So I can forget my name or what I'm doing.</p>
-
-				<p>The first aim, is learning again Cobol. It will be done in several main steps:</p>
-				<ul>
-					<li>basics with text files,</li>
-					<li>indexed files,</li>
-					<li>databases connexions.</li>
-				</ul>
-				<h3>Before programming...</h3>
-				<p>I've already done some experimentations. One of the conclusion is how to use <em>Makefiles</em>. All project <em>Makefiles</em> will set up some variables (application name, libraries...) and include a common one which contains all the logic for building and running applications. This common logic is in <code>mk/common.mk</code>.
-				</p>
-
-				<h3>For the C programmer</h3>
-				You'l find some <a href="caveats.html">caveats</a> such a <code>PICTURE 9</code> doesn't contain a byte value from 0 to 255 but a single decimal digit from 0 to 9.
+				<h4>Awful PIC 9</h4>
+				<p>A <code>PICTURE 9</code> doesn't contain a byte value from 0 to 255 but a single decimal digit from 0 to 9. The compiler (<em>OpenCobol 2.0</em>) tells you <strong>nothing</strong>.</p>
+				<p>Never forget it!</p>
 
 			</section>
 		</div>

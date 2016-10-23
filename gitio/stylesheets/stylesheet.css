@@ -424,6 +424,8 @@ Small Device Styles
 
 }
 
+/* My CSS */
+
 #main_content.inner p {
 	text-align: justify;
 }
@@ -455,3 +457,16 @@ menu ul li a:hover {
 	background-color:#D3D3D3;
 	border-color:#696969 #DCDCDC #DCDCDC #696969;
 } 
+
+#main_content p {
+  display block;
+}
+#main_content h4 {
+  display: inline;
+  margin-right: 1em;
+}
+#main_content h4 + p {
+  display: inline;
+}
+
+
