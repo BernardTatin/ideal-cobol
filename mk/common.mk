@@ -2,7 +2,7 @@
 # common.mk
 #
 
-COBOL = cobc
+COBOL ?= cobc
 RM    = rm -Rfv
 
 STANDARD ?= default
@@ -10,7 +10,12 @@ STANDARD ?= default
 
 ODIR = bin
 
+ifeq ($(COBOL),cobc)
 WARNS = -Wcolumn-overflow -Wall -Wterminator -W -std=$(STANDARD) -fixed
+else
+WARNS = -v -P
+endif
+
 DEBUG =
 OPTIM =
 

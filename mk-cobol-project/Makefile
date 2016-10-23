@@ -7,7 +7,7 @@ APP = cobol-project-maker
 MAIN = $(APP).cbl
 CPYBOOKS = 
 TESTS_ARGS = coco-project
-_dll = create-makefile create-cobolfile trimright
+_dll = trimright create-makefile create-cobolfile 
 
 include ../mk/common.mk
 

@@ -4,7 +4,7 @@
          WORKING-STORAGE SECTION.
            01 buffer PIC X(256).
          LINKAGE SECTION.
-      *> project name, the first argument on the command line   
+      *> project name, the first argument on the command line
            01 project-name PIC X(256).
        PROCEDURE DIVISION USING project-name.
        prog.
@@ -19,7 +19,6 @@
       *> emergency exit
        900-TERMINATE SECTION.
            DISPLAY "FATAL ERROR when witing cobolfile, exit"
-              UPON SYSERR
            END-DISPLAY.
            STOP RUN.
 
