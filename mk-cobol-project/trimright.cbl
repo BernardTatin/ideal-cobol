@@ -1,5 +1,5 @@
        IDENTIFICATION DIVISION.
-       PROGRAM-ID. trimright IS INITIAL.
+       PROGRAM-ID. trimright-display IS INITIAL.
 
        DATA DIVISION.
        WORKING-STORAGE SECTION.
@@ -19,5 +19,5 @@
            end-if.
            EXIT PROGRAM.
 
-           END PROGRAM trimright.
+       END PROGRAM trimright-display.
 

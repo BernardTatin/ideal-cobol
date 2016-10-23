@@ -4,6 +4,9 @@
 *.obj
 *.elf
 bin/
+*.s
+*.i
+*.lis
 
 # IDE results
 .*.swp
