@@ -8,7 +8,10 @@ RM    = rm -Rfv
 STANDARD ?= default
 # cobol85
 
-ODIR = bin
+
+EXEDIR = $(shell pwd)/bin
+LIBDIR = $(shell pwd)/lib
+TSTDIR = $(shell pwd)/test
 
 ifeq ($(COBOL),cobc)
 WARNS = -Wcolumn-overflow -Wall -Wterminator -W -std=$(STANDARD) -fixed
@@ -19,30 +22,37 @@ endif
 DEBUG =
 OPTIM =
 
-EXE = bin/$(APP).exe
+EXE = $(EXEDIR)/$(APP).exe
 
 OPTIONS = $(WARNS) $(DEBUG) $(OPTIM)
 
-_SOBJS = $(addsuffix .so,$(notdir $(_dll)))
-SOBJS = $(addprefix $(ODIR)/lib, $(_SOBJS))
+_SOBJS = $(addsuffix .so,$(_dll))
+SOBJS = $(addprefix $(LIBDIR)/lib,$(_SOBJS))
 
-all: $(ODIR) $(SOBJS) $(EXE)
+all: $(EXEDIR) $(LIBDIR) $(SOBJS) $(EXE)
 
-$(ODIR):
+$(EXEDIR):
+	@echo "SOBJS : <$(SOBJS)>"
+	mkdir -p $@
+
+$(LIBDIR):
+	mkdir -p $@
+
+$(TSTDIR):
 	mkdir -p $@
 
 clean:
 	$(RM) $(EXE) $(SOBJS)
 
-bin/lib%.so: %.cbl $(CPYBOOKS)
+$(LIBDIR)/lib%.so: %.cbl $(CPYBOOKS)
 	$(COBOL) $(OPTIONS) -m -o $@ $<
 
-test: all
-	cd $(ODIR) && ./$(notdir $(EXE)) $(TESTS_ARGS)
+test: $(TSTDIR) all
+	cd $(TSTDIR) && LD_LIBRARY_PATH=$(LIBDIR) $(EXE) $(TESTS_ARGS)
 
 $(EXE): $(MAIN) $(CPYBOOKS)
 ifdef _dll
-	$(COBOL) $(OPTIONS) -x -o $@ $< -L $(ODIR) $(addprefix -l ,$(_dll))
+	$(COBOL) $(OPTIONS) -x -o $@ $< -L $(LIBDIR) $(addprefix -l ,$(_dll))
 else
 	$(COBOL) $(OPTIONS) -x -o $@ $<
 endif
