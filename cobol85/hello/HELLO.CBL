@@ -1,6 +1,10 @@
        IDENTIFICATION DIVISION.
       *> Compile and link with : ZC390CLG zcobol\cobol85\hello\HELLO
       *> Run with              : EXEC zcobol\cobol85\hello\HELLO
+      *>
+      *> I can't use CALL in any way, nor MOVE FUNCTION, nor STRING...
+      *> zcobol for z390 emulator is a great idea but hard to use.
+
        PROGRAM-ID. HELLO.
       *>  Not supported by Tiny Cobol.
             Author Bernard Tatin.
