@@ -11,6 +11,7 @@ bin/
 # IDE results
 .*.swp
 *.komodoproject
+*.sublime-*
 
 # Precompiled Headers
 *.gch
