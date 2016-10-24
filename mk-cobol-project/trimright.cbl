@@ -3,18 +3,18 @@
 
        DATA DIVISION.
        WORKING-STORAGE SECTION.
-       01 blen PIC 99999.
+       01 left-len PIC 99999.
        LINKAGE SECTION.
-       01 full-string pic x ANY LENGTH.
+       01 full-string PIC X ANY LENGTH.
 
        PROCEDURE DIVISION USING full-string.
        prog.
            MOVE FUNCTION LENGTH ( FUNCTION TRIM (full-string TRAILING) )
-           TO blen.
-           if blen > 0 then
-              DISPLAY full-string(1:blen)
+           TO left-len.
+           IF left-len > 0 then
+              DISPLAY full-string(1:left-len)
            ELSE
-              DISPLAY '##'
+              DISPLAY ''
            END-IF.
            EXIT PROGRAM.
 
