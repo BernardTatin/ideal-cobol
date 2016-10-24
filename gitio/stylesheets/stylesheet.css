@@ -431,18 +431,18 @@ Small Device Styles
 }
 
 
-menu ul {
+header menu ul {
 	padding:0;
 	margin:0;
 	list-style-type:none;
 }
-menu li {
+header menu li {
 	margin-left:2px;
 	float:left; /*pour IE*/
 }
-menu ul li a {
+header menu ul li a {
 	display:block;
-	float:left;   
+	float:left;
 	width:100px;
 	background-color:#6495ED;
 	color:black;
@@ -453,13 +453,13 @@ menu ul li a {
 	/*pour avoir un effet "outset" avec IE :*/
 	border-color:#DCDCDC #696969 #696969 #DCDCDC;
 }
-menu ul li a:hover {
+header menu ul li a:hover {
 	background-color:#D3D3D3;
 	border-color:#696969 #DCDCDC #DCDCDC #696969;
-} 
+}
 
 #main_content p {
-  display block;
+  display: block;
 }
 #main_content h4 {
   display: inline;
@@ -469,4 +469,20 @@ menu ul li a:hover {
   display: inline;
 }
 
+#main_content {
+  float: none;
+}
 
+#main_content_wrap aside {
+  margin-left: auto;
+  margin-right: auto;
+  border-right: 2px #999 solid;
+  padding-right: 10px;
+  margin-top: 60px;
+}
+
+#main_content_wrap aside ul {
+  float: left;
+  max-width: 180px;
+  margin-left: 12px;
+}
