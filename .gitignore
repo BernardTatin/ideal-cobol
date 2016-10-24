@@ -4,9 +4,23 @@
 *.obj
 *.elf
 bin/
+
+# Tiny Cobol
 *.s
 *.i
 *.lis
+
+# z390 Cobol
+*.ERR
+*.390
+*.BAL
+*.LOG
+*.LST
+*.MLC
+*.OBJ
+*.PRN
+*_ZC_LABELS.CPY
+
 
 # IDE results
 .*.swp
