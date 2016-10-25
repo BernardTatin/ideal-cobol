@@ -6,11 +6,22 @@
        DATA DIVISION.
        WORKING-STORAGE SECTION.
        LINKAGE SECTION.
-       01 FULL-STRING PIC X(32).
+           77 BUFFER PIC X(32).
+           77 BUFFER2 PIC X(32).
+       01 left-len PIC 99999.
 
-       PROCEDURE DIVISION USING FULL-STRING.
+       PROCEDURE DIVISION USING BUFFER
        SUBLINE.
-           DISPLAY FULL-STRING.
+      *> Z390 does not support MOVE FUNCTION
+      *>     MOVE FUNCTION LENGTH ( FUNCTION TRIM (BUFFER TRAILING) )
+      *>     TO LEFT-LEN.
+           MOVE 8 TO LEFT-LEN.
+           IF LEFT-LEN > 0 THEN
+             MOVE BUFFER(1:LEFT-LEN) TO BUFFER2
+           ELSE
+             MOVE '??' TO BUFFER2
+           END-IF.
+           DISPLAY BUFFER2.
            EXIT PROGRAM.
        END PROGRAM TRIMR-DISP.
 

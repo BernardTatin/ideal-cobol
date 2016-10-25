@@ -21,6 +21,9 @@ bin/
 *.PRN
 *_ZC_LABELS.CPY
 
+# temporary
+tmp*/
+*.tmp
 
 # IDE results
 .*.swp
