@@ -1,5 +1,5 @@
        IDENTIFICATION DIVISION.
-       PROGRAM-ID. TRIMR-DISP.
+       PROGRAM-ID. TRIMRD.
       *> IS INITIAL.
 
        ENVIRONMENT DIVISION.
@@ -23,5 +23,5 @@
            END-IF.
            DISPLAY BUFFER2.
            EXIT PROGRAM.
-       END PROGRAM TRIMR-DISP.
+       END PROGRAM TRIMRD.
 
