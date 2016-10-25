@@ -39,10 +39,12 @@ esac
 main_file=$1
 shift
 objs=
-
+_sysobj='+zcobol/z390'
 while [[ $# -ne 0 ]]
 do
 	objs="$objs $1"
+	d=$(dirname $1)
+	echo $_sysobj | grep $d &> /dev/null || _sysobj="$_sysobj+$d"
 	cobol2asm $1
 	shift
 done
@@ -50,6 +52,8 @@ done
 cobol2asm $main_file
 
 echo '=================================================='
-${ici}/lz390.sh $main_file 'SYSOBJ(+zcobol\z390+zcobol\cobol85\hello)' || \
+sysobj=$(echo $_sysobj | tr '/' '\\')
+echo "SYSOBJ ($sysobj)"
+${ici}/lz390.sh $main_file "SYSOBJ($sysobj)" || \
 	onerror 4 "see errors on lz390 generated lst file and console"
 
