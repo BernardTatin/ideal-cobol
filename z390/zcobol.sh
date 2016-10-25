@@ -3,6 +3,9 @@
 ici=$(dirname $0)
 source ${ici}/shlib.sh
 
+sysobj=
+opt_file=zcobol/z390/ZC390CLG.OPT
+
 dohelp() {
 	# show help text
 	cat << DOHELP
@@ -14,6 +17,16 @@ $script transforms each CBL files on the command line in
 ....... together
 DOHELP
 	exit 0
+}
+
+create_opt_file() {
+	cat > ${opt_file} << OPTFILE
+sysmac(+zcobol+zcobol\\z390+mac+cics$sysobj)
+syscpy(+zcobol+zcobol\\z390+mac+cics$sysobj)
+BAL
+NOLISTCALL
+MAXGBL(1500000) * INCR MAX GBLA/GBLB/GBLC
+OPTFILE
 }
 
 erase_residues() {
@@ -31,11 +44,16 @@ cobol2asm() {
 	# dont't want to use old compilations results
 	erase_residues $src
 	# from COBOL to Macro ASM
-	${ici}/zc390.sh $src 'SYSCPY(+zcobol+zcobol\z390)' || \
+	echo "SYSOBJ ($sysobj)"
+	${ici}/zc390.sh $src 'SYSCPY(+zcobol+zcobol\z390$sysobj)' || \
 		onerror 2 "$src: see errors on mz390 generated bal file and console"
+	# create OPT file
+	create_opt_file
+	cat ${opt_file}
 	# from Macro ASM to OBJ
 	${ici}/mz390.sh $src '@zcobol\z390\ZC390CLG' || \
 		onerror 3 "$src: see errors on mz390 generated bal file and console"
+	rm -fv ${opt_file}
 }
 
 # ensure we don't need help
@@ -50,7 +68,7 @@ esac
 main_file=$1
 shift
 # variables initialization
-_sysobj='+zcobol/z390'
+_sysobj=
 
 # compile and compute SYSOBJ
 # NOTE: SYSOBJ is a set of directories which contains
@@ -61,6 +79,7 @@ do
 	d=$(dirname $1)
 	# add it only if it is not there
 	echo $_sysobj | grep $d &> /dev/null || _sysobj="$_sysobj+$d"
+	! [[ -z $_sysobj ]] && sysobj="$(echo $_sysobj | tr '/' '\\')"
 	# compile
 	cobol2asm $1
 	# next file
@@ -71,8 +90,7 @@ cobol2asm $main_file
 
 echo '=================================================='
 # then link
-sysobj=$(echo $_sysobj | tr '/' '\\')
 echo "SYSOBJ ($sysobj)"
-${ici}/lz390.sh $main_file "SYSOBJ($sysobj)" || \
+${ici}/lz390.sh $main_file "SYSOBJ(+zcobol\z390$sysobj)" || \
 	onerror 4 "see errors on lz390 generated lst file and console"
 

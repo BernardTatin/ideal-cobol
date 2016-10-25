@@ -18,7 +18,7 @@
       *> Constants are unknown with z390 Cobol...
       *>78 string-len value 32.
 
-           77 MYNAME PIC X(32) VALUE 'BERNARD'.
+           77 MYNAME PIC X(32) VALUE 'BERNARD TAT1 !!!'.
            77 BUFFER PIC X(32).
        PROCEDURE DIVISION.
        MAINLINE.
@@ -27,9 +27,9 @@
       *>        myname DELIMITED BY spaces
       *>        into buffer.
            MOVE 'Hello world !' TO BUFFER.
-           CALL 'TRIMR-DISP' USING BY VALUE BUFFER.
+           CALL 'TRIMRD' USING BY VALUE BUFFER.
            MOVE MYNAME TO BUFFER.
-           CALL 'TRIMR-DISP' USING BY VALUE BUFFER.
+           CALL 'TRIMRD' USING BY VALUE BUFFER.
        STOP RUN.
        END PROGRAM HELLO.
 
