@@ -1,6 +1,5 @@
        IDENTIFICATION DIVISION.
-       PROGRAM-ID. TRIMRD.
-      *> IS INITIAL.
+       PROGRAM-ID. TRIMRD IS INITIAL.
 
        ENVIRONMENT DIVISION.
        DATA DIVISION.
@@ -8,19 +7,20 @@
            77 BUFFER2 PIC X(32).
        01 left-len PIC 99999.
        LINKAGE SECTION.
-           77 BUFFER PIC X(32).
+           77 BUFFER PIC X(48).
 
        PROCEDURE DIVISION USING BUFFER.
        MAINLINE.
       *> Z390 does not support MOVE FUNCTION
       *>     MOVE FUNCTION LENGTH ( FUNCTION TRIM (BUFFER TRAILING) )
       *>     TO LEFT-LEN.
-           MOVE 21 TO LEFT-LEN.
+           MOVE LENGTH OF BUFFER TO LEFT-LEN.
            IF LEFT-LEN > 0 THEN
              MOVE BUFFER(1:LEFT-LEN) TO BUFFER2
            ELSE
              MOVE '??' TO BUFFER2
            END-IF.
+           display 'LEFT-LEN : ' LEFT-LEN.
            DISPLAY BUFFER2.
            EXIT PROGRAM.
        END PROGRAM TRIMRD.
