@@ -4,24 +4,35 @@
        ENVIRONMENT DIVISION.
        DATA DIVISION.
        WORKING-STORAGE SECTION.
-           77 BUFFER2 PIC X(32).
-       01 left-len PIC 99999.
+       01 CST-BUFFLEN PIC 9999 VALUE 128.
+
+       01 BUFFER2 PIC X(128).
+       01 REDBUFFER REDEFINES BUFFER2.
+         02 RB-X PIC X OCCURS 128 TIMES.
+
+       01 LEFTLEN COMP PIC S99999.
+       01 K PIC 9999 VALUE 0.
+
        LINKAGE SECTION.
            77 BUFFER PIC X(48).
 
-       PROCEDURE DIVISION USING BUFFER.
-       MAINLINE.
       *> Z390 does not support MOVE FUNCTION
       *>     MOVE FUNCTION LENGTH ( FUNCTION TRIM (BUFFER TRAILING) )
-      *>     TO LEFT-LEN.
-           MOVE LENGTH OF BUFFER TO LEFT-LEN.
-           IF LEFT-LEN > 0 THEN
-             MOVE BUFFER(1:LEFT-LEN) TO BUFFER2
-           ELSE
-             MOVE '??' TO BUFFER2
-           END-IF.
-           display 'LEFT-LEN : ' LEFT-LEN.
-           DISPLAY BUFFER2.
+      *>     TO LEFTLEN.
+       PROCEDURE DIVISION USING BUFFER.
+       MAINLINE.
+           MOVE BUFFER TO BUFFER2.
+           MOVE 0 TO LEFTLEN.
+
+           INSPECT BUFFER2 TALLYING LEFTLEN FOR CHARACTERS BEFORE '!'.
+
+           DISPLAY 'LEFTLEN : ' LEFTLEN.
+           PERFORM LDISP VARYING K FROM 1 BY 1 UNTIL K > LEFTLEN.
+           DISPLAY '--'.
+           EXIT PROGRAM.
+       LDISP.
+           DISPLAY RB-X(K).
+       OUT.
            EXIT PROGRAM.
        END PROGRAM TRIMRD.
 
