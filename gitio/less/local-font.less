@@ -1,0 +1,39 @@
+/*
+ * local.less
+ * css generation:
+ * lessc --include-path=$HOME/git/marcel-kernel/less less/local-font.less > css/local-font.css
+ */
+
+.default-font {
+    font: normal normal 15px/1.5 Rosario, 'Helvetica', Verdana, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased;
+    font-smoothing: antialiased;
+}
+
+.title-font {
+    font-family: 'League Gothic Condensed', 'Helvetica', Verdana, Arial, sans-serif;
+    letter-spacing: -1px;
+    word-spacing: 5px;
+}
+
+.hx-font, .footer-font {
+    font-family:  Rosario, 'Helvetica', Verdana, Arial, sans-serif;
+}
+
+.hx-font {
+    font-weight: bold;
+    /* font-style: italic; */
+    letter-spacing: 1px;
+}
+
+.text-font, .text-italic-font, .text-bold-font, .text-bold-italic-font {
+    font-family:  Rosario, 'Helvetica', Verdana, Arial, sans-serif;
+}
+
+.code-font {
+    font: normal normal .8em/1.7 "Lucida Sans Typewriter", "Lucida Console", Monaco, "Bitstream Vera Sans Mono", monospace;
+}
+
+
+@import "fonts.less";
