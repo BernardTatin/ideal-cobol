@@ -30,6 +30,7 @@
            CALL 'TRIMRD' USING BY VALUE BUFFER.
            MOVE MYNAME TO BUFFER.
            CALL 'TRIMRD' USING BY VALUE BUFFER.
+           MOVE 0 TO return-code.
        STOP RUN.
        END PROGRAM HELLO.
 
