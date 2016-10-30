@@ -1,0 +1,3 @@
+[submodule "bright-marcel-kernel"]
+	path = bright-marcel-kernel
+	url = https://github.com/BernardTatin/bright-marcel-kernel
