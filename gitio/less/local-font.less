@@ -44,7 +44,9 @@
 }
 
 .code-font {
-    font: normal normal .8em/1.7 "Lucida Sans Typewriter", "Lucida Console", Monaco, "Bitstream Vera Sans Mono", monospace;
+    font-family:  "Lucida Console", "Lucida Sans Typewriter", Monaco, "Bitstream Vera Sans Mono", monospace;
+    font-weight: bold;
+    color: #ee3333;
 }
 
 
@@ -68,6 +70,9 @@
   text-indent: -5000px;
   overflow: hidden;
   background: url(../images/sprite_download.png) no-repeat bottom left;
+  &:hover {
+    background: url(../images/sprite_download.png) no-repeat top left;
+  }
 }
 
 .tar_download_link {
@@ -79,12 +84,21 @@
   overflow: hidden;
   background: url(../images/sprite_download.png) no-repeat bottom right;
   margin-left: 10px;
+  &:hover {
+    background: url(../images/sprite_download.png) no-repeat top right;
+  }
 }
 
-.zip_download_link:hover {
-  background: url(../images/sprite_download.png) no-repeat top left;
+article {
+  p {
+    display: block;
+  }
+  h4 {
+    display: inline;
+    margin-right: 1em;
+  }
+  h4 + p {
+    display: inline;
+  }
 }
 
-.tar_download_link:hover {
-  background: url(../images/sprite_download.png) no-repeat top right;
-}

@@ -36,7 +36,9 @@
   font-family: 'GilliusADF 2 Regular Bold Italic', Rosario, 'Helvetica', Verdana, Arial, sans-serif;
 }
 .code-font {
-  font: normal normal 0.8em/1.7 "Lucida Sans Typewriter", "Lucida Console", Monaco, "Bitstream Vera Sans Mono", monospace;
+  font-family: "Lucida Console", "Lucida Sans Typewriter", Monaco, "Bitstream Vera Sans Mono", monospace;
+  font-weight: bold;
+  color: #ee3333;
 }
 /*
  * fonts.less
@@ -89,7 +91,9 @@ h6 {
 }
 #article code,
 #article pre {
-  font: normal normal 0.8em/1.7 "Lucida Sans Typewriter", "Lucida Console", Monaco, "Bitstream Vera Sans Mono", monospace;
+  font-family: "Lucida Console", "Lucida Sans Typewriter", Monaco, "Bitstream Vera Sans Mono", monospace;
+  font-weight: bold;
+  color: #ee3333;
 }
 #article table th {
   font-family: 'GilliusADF 2 Regular Bold', Rosario, 'Helvetica', Verdana, Arial, sans-serif;
@@ -153,6 +157,9 @@ p.current-node,
   overflow: hidden;
   background: url(../images/sprite_download.png) no-repeat bottom left;
 }
+.zip_download_link:hover {
+  background: url(../images/sprite_download.png) no-repeat top left;
+}
 .tar_download_link {
   display: block;
   float: right;
@@ -163,9 +170,16 @@ p.current-node,
   background: url(../images/sprite_download.png) no-repeat bottom right;
   margin-left: 10px;
 }
-.zip_download_link:hover {
-  background: url(../images/sprite_download.png) no-repeat top left;
-}
 .tar_download_link:hover {
   background: url(../images/sprite_download.png) no-repeat top right;
+}
+article p {
+  display: block;
+}
+article h4 {
+  display: inline;
+  margin-right: 1em;
+}
+article h4 + p {
+  display: inline;
 }
