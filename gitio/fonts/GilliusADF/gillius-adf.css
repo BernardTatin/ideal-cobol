@@ -1,0 +1,52 @@
+/*
+ * gillius-adf.css
+ */
+
+@font-face {
+    font-family: 'GilliusADF 2 Bold';
+    src: url('GilliusADF/GilliusADFNo2-Bold.otf');
+    font-weight: bold;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'GilliusADF 2 Bold Italic';
+    src: url('GilliusADF/GilliusADFNo2-BoldItalic.otf');
+    font-weight: bold;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'GilliusADF 2 Italic';
+    src: url('GilliusADF/GilliusADFNo2-Italic.otf');
+    font-weight: normal;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'GilliusADF 2 Regular';
+    src: url('GilliusADF/GilliusADFNo2-Regular.otf');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'GilliusADF 2 Bold Condensed';
+    src: url('GilliusADF/GilliusADFNo2-BoldCond.otf');
+    font-weight: bold;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'GilliusADF 2 Bold Italic Condensed';
+    src: url('GilliusADF/GilliusADFNo2-BoldCondItalic.otf');
+    font-weight: bold;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'GilliusADF 2 Condensed';
+    src: url('GilliusADF/GilliusADFNo2-Cond.otf');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'GilliusADF 2 Condensed Italic';
+    src: url('GilliusADF/GilliusADFNo2-CondItalic.otf');
+    font-weight: normal;
+    font-style: italic;
+}

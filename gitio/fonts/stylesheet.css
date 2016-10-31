@@ -1,100 +1,92 @@
 /*
- * fonts
+ * gillius-adf.css
  */
 
-/* Regular */
 @font-face {
-    font-family: 'Rosario';
-    src: url('Rosario-for-Web/Rosario-Italic.eot');
-    src: url('Rosario-for-Web/Rosario-Italic.eot?#iefix') format('embedded-opentype'),
-         url('Rosario-for-Web/Rosario-Italic.woff') format('woff'),
-         url('Rosario-for-Web/Rosario-Italic.ttf') format('truetype');
-    font-weight: normal;
-    font-style: italic;
-
-}
-
-/* Italic */
-@font-face {
-    font-family: 'Rosario';
-    src: url('Rosario-for-Web/Rosario-Regular.eot');
-    src: url('Rosario-for-Web/Rosario-Regular.eot?#iefix') format('embedded-opentype'),
-         url('Rosario-for-Web/Rosario-Regular.woff') format('woff'),
-         url('Rosario-for-Web/Rosario-Regular.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-
-}
-
-/* Condensed */
-@font-face {
-    font-family: 'Rosario Condensed';
-    src: url('Rosario-for-Web/Rosario-Bold.eot');
-    src: url('Rosario-for-Web/Rosario-Bold.eot?#iefix') format('embedded-opentype'),
-         url('Rosario-for-Web/Rosario-Bold.woff') format('woff'),
-         url('Rosario-for-Web/Rosario-Bold.ttf') format('truetype');
+    font-family: 'GilliusADF 2 Regular';
+    src: url('GilliusADF/GilliusADFNo2-Bold.otf');
     font-weight: bold;
     font-style: normal;
-
 }
-
-/* Condensed Italic */
 @font-face {
-    font-family: 'Rosario Condensed';
-    src: url('Rosario-for-Web/Rosario-BoldItalic.eot');
-    src: url('Rosario-for-Web/Rosario-BoldItalic.eot?#iefix') format('embedded-opentype'),
-         url('Rosario-for-Web/Rosario-BoldItalic.woff') format('woff'),
-         url('Rosario-for-Web/Rosario-BoldItalic.ttf') format('truetype');
+    font-family: 'GilliusADF 2 Regular';
+    src: url('GilliusADF/GilliusADFNo2-BoldItalic.otf');
     font-weight: bold;
     font-style: italic;
 }
-/* Regular */
 @font-face {
-    font-family: 'League Gothic';
-    src: url('theleagueof-league-gothic/webfonts/leaguegothic-italic-webfont.eot');
-    src: url('theleagueof-league-gothic/webfonts/leaguegothic-italic-webfont.eot?#iefix') format('embedded-opentype'),
-         url('theleagueof-league-gothic/webfonts/leaguegothic-italic-webfont.woff') format('woff'),
-         url('theleagueof-league-gothic/webfonts/leaguegothic-italic-webfont.ttf') format('truetype'),
-         url('theleagueof-league-gothic/webfonts/leaguegothic-italic-webfont.svg#league_gothic_italicregular') format('svg');
+    font-family: 'GilliusADF 2 Regular';
+    src: url('GilliusADF/GilliusADFNo2-Italic.otf');
     font-weight: normal;
     font-style: italic;
-
 }
-
-/* Italic */
 @font-face {
-    font-family: 'League Gothic';
-    src: url('theleagueof-league-gothic/webfonts/leaguegothic-regular-webfont.eot');
-    src: url('theleagueof-league-gothic/webfonts/leaguegothic-regular-webfont.eot?#iefix') format('embedded-opentype'),
-         url('theleagueof-league-gothic/webfonts/leaguegothic-regular-webfont.woff') format('woff'),
-         url('theleagueof-league-gothic/webfonts/leaguegothic-regular-webfont.ttf') format('truetype'),
-         url('theleagueof-league-gothic/webfonts/leaguegothic-regular-webfont.svg#league_gothicregular') format('svg');
+    font-family: 'GilliusADF 2 Regular';
+    src: url('GilliusADF/GilliusADFNo2-Regular.otf');
     font-weight: normal;
     font-style: normal;
-
 }
-
-/* Condensed */
 @font-face {
-    font-family: 'League Gothic Condensed';
-    src: url('theleagueof-league-gothic/webfonts/leaguegothic-condensed-regular-webfont.eot');
-    src: url('theleagueof-league-gothic/webfonts/leaguegothic-condensed-regular-webfont.eot?#iefix') format('embedded-opentype'),
-         url('theleagueof-league-gothic/webfonts/leaguegothic-condensed-regular-webfont.woff') format('woff'),
-         url('theleagueof-league-gothic/webfonts/leaguegothic-condensed-regular-webfont.ttf') format('truetype'),
-         url('theleagueof-league-gothic/webfonts/leaguegothic-condensed-regular-webfont.svg#league_gothic_condensed-Rg') format('svg');
+    font-family: 'GilliusADF 2 Condensed';
+    src: url('GilliusADF/GilliusADFNo2-BoldCond.otf');
+    font-weight: bold;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'GilliusADF 2 Condensed';
+    src: url('GilliusADF/GilliusADFNo2-BoldCondItalic.otf');
+    font-weight: bold;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'GilliusADF 2 Condensed';
+    src: url('GilliusADF/GilliusADFNo2-Cond.otf');
     font-weight: normal;
     font-style: normal;
-
 }
-
-/* Condensed Italic */
 @font-face {
-    font-family: 'League Gothic Condensed';
-    src: url('theleagueof-league-gothic/webfonts/leaguegothic-condensed-italic-webfont.eot');
-    src: url('theleagueof-league-gothic/webfonts/leaguegothic-condensed-italic-webfont.eot?#iefix') format('embedded-opentype'),
-         url('theleagueof-league-gothic/webfonts/leaguegothic-condensed-italic-webfont.woff') format('woff'),
-         url('theleagueof-league-gothic/webfonts/leaguegothic-condensed-italic-webfont.ttf') format('truetype'),
-         url('theleagueof-league-gothic/webfonts/leaguegothic-condensed-italic-webfont.svg#league_gothic_condensed_itaRg') format('svg');
+    font-family: 'GilliusADF 2 Condensed';
+    src: url('GilliusADF/GilliusADFNo2-CondItalic.otf');
     font-weight: normal;
     font-style: italic;
+}
+
+/*
+ *
+ */
+@font-face {
+    font-family: 'GilliusADF 2 Regular Bold';
+    src: url('GilliusADF/GilliusADFNo2-Bold.otf');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'GilliusADF 2 Regular Bold Italic';
+    src: url('GilliusADF/GilliusADFNo2-BoldItalic.otf');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'GilliusADF 2 Regular Italic';
+    src: url('GilliusADF/GilliusADFNo2-Italic.otf');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'GilliusADF 2 Condensed Bold';
+    src: url('GilliusADF/GilliusADFNo2-BoldCond.otf');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'GilliusADF 2 Condensed Bold Italic';
+    src: url('GilliusADF/GilliusADFNo2-BoldCondItalic.otf');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'GilliusADF 2 Condensed Italic';
+    src: url('GilliusADF/GilliusADFNo2-CondItalic.otf');
+    font-weight: normal;
+    font-style: normal;
 }
