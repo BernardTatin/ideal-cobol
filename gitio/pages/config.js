@@ -6,7 +6,7 @@ var config = (function () {
     return {
 // personnal settings
         SITE_NAME: 'Ideal Cobol',
-        SITE_DESCRIPTION: 'a little CMS in Javascript',
+        SITE_DESCRIPTION: 'When Cobol is ideal',
         SITE_TITLE: 'Ideal Cobol: ',
         AUTHORS: 'Bernard Tatin',
         COPYRIGHT: '(c) 2016',

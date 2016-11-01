@@ -1,0 +1,75 @@
+/*
+ * local.less
+ */
+#downloads {
+  position: absolute;
+  width: 210px;
+  z-index: 10;
+  bottom: -40px;
+  right: 0;
+  height: 70px;
+  background: url('../images/icon_download.png') no-repeat 0% 90%;
+}
+.zip_download_link {
+  display: block;
+  float: right;
+  width: 90px;
+  height: 70px;
+  text-indent: -5000px;
+  overflow: hidden;
+  background: url(../images/sprite_download.png) no-repeat bottom left;
+}
+.zip_download_link:hover {
+  background: url(../images/sprite_download.png) no-repeat top left;
+}
+.tar_download_link {
+  display: block;
+  float: right;
+  width: 90px;
+  height: 70px;
+  text-indent: -5000px;
+  overflow: hidden;
+  background: url(../images/sprite_download.png) no-repeat bottom right;
+  margin-left: 10px;
+}
+.tar_download_link:hover {
+  background: url(../images/sprite_download.png) no-repeat top right;
+}
+article p {
+  display: block;
+}
+article h4 {
+  display: inline;
+  margin-right: 1em;
+  color: #ff6666;
+  letter-spacing: -1px;
+}
+article h4 + p {
+  display: inline;
+}
+#header {
+  background-color: #556080;
+}
+#header h1 {
+  font-size: 2.85em;
+}
+#header h1 a {
+  color: #5566ff;
+}
+#header h2 {
+  font-size: 1.85em;
+}
+#header nav p {
+  color: #5566ff;
+}
+#main_title {
+  color: #5566ff;
+}
+#main_content h1,
+#main_content h2,
+#main_content h3,
+#main_content h4,
+#main_content h5,
+#main_content h6 {
+  color: #5566ff;
+}
