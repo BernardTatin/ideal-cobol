@@ -49,14 +49,17 @@ article {
     margin-right: 1em;
     color: #ff6666;
     letter-spacing: -1px;
+    &:after {
+      content: ' - ';
+    }
   }
   h4 + p {
     display: inline;
   }
 }
 
-@hcolor: #5566ff;
-@bcolor: #556080;
+@hcolor: #4455ee;
+@bcolor: #88a0c0;
 
 #header {
   background-color: @bcolor;

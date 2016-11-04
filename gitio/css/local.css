@@ -44,26 +44,29 @@ article h4 {
   color: #ff6666;
   letter-spacing: -1px;
 }
+article h4:after {
+  content: ' - ';
+}
 article h4 + p {
   display: inline;
 }
 #header {
-  background-color: #556080;
+  background-color: #88a0c0;
 }
 #header h1 {
   font-size: 2.85em;
 }
 #header h1 a {
-  color: #5566ff;
+  color: #4455ee;
 }
 #header h2 {
   font-size: 1.85em;
 }
 #header nav p {
-  color: #5566ff;
+  color: #4455ee;
 }
 #main_title {
-  color: #5566ff;
+  color: #4455ee;
 }
 #main_content h1,
 #main_content h2,
@@ -71,5 +74,5 @@ article h4 + p {
 #main_content h4,
 #main_content h5,
 #main_content h6 {
-  color: #5566ff;
+  color: #4455ee;
 }
