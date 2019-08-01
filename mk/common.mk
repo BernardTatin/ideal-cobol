@@ -16,12 +16,18 @@ TSTDIR = $(shell pwd)/test
 
 ifeq ($(COBOL),cobc)
 WARNS = -Wcolumn-overflow -Wall -Wterminator -W -fixed
-else
-WARNS = -v -P
-endif
-
 DEBUG =
 OPTIM =
+else ifeq ($(COBOL),cobrc)
+WARNS =
+DEBUG =
+OPTIM =
+else
+WARNS = -v -P
+DEBUG =
+OPTIM =
+endif
+
 
 EXE = $(EXEDIR)/$(APP).exe
 

@@ -1,11 +1,11 @@
       *> -------------------------------------------
-      *> cobol-project-maker.cbl
+      *> cobol_project_maker.cbl
       *> >>SOURCE FORMAT IS FIXED
       *> -------------------------------------------
 
        IDENTIFICATION DIVISION.
 
-         PROGRAM-ID. "cobol-project-maker".
+         PROGRAM-ID. "cobol_project_maker".
 
        DATA DIVISION.
          WORKING-STORAGE SECTION.
