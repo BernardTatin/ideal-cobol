@@ -3,17 +3,17 @@ COB = $(wildcard *.cbl)
 CPY = $(wildcard *.cpy)
 DLL = $(patsubst %.cbl,%.dll,$(COB))
 
-EXE = cobol-project-maker
+EXE = cobol_project_maker
 
 all: $(DLL)
 
-run:
-	rclrun $(EXE)
+run: all
+	rclrun $(EXE) pipo
 
 list:
-	echo 'COB=' $(COB)
-	echo 'CPY=' $(CPY)
-	echo 'DLL=' $(DLL)
+	@echo 'COB=' $(COB)
+	@echo 'CPY=' $(CPY)
+	@echo 'DLL=' $(DLL)
 
 %.dll: %.cbl $(CPY)
 	cobrc $<

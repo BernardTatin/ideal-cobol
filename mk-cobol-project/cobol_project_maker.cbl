@@ -38,7 +38,7 @@
       *>       if no arguments, show an error
       *>       under Unix, it's like writing on stderr
                DISPLAY "cobol-project-maker needs a project file name"
-                 UPON SYSERR
+      *>           UPON SYSERR
                END-DISPLAY
       *>       ... and exit
                perform 900-TERMINATE
