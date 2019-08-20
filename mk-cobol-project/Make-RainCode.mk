@@ -1,21 +1,22 @@
 
-COB = $(wildcard *.cbl)
+cob_extension ?= cbl
+COB = $(wildcard *.$(cob_extension))
 CPY = $(wildcard *.cpy)
-DLL = $(patsubst %.cbl,%.dll,$(COB))
+DLL = $(patsubst %.$(cob_extension),%.dll,$(COB))
 
 EXE = cobol_project_maker
 
 all: $(DLL)
 
 run: all
-	rclrun $(EXE) pipo
+	rclrun -LogLevel=DEBUG $(EXE) pipo
 
 list:
 	@echo 'COB=' $(COB)
 	@echo 'CPY=' $(CPY)
 	@echo 'DLL=' $(DLL)
 
-%.dll: %.cbl $(CPY)
+%.dll: %.$(cob_extension) $(CPY)
 	cobrc $<
 
 clean:
