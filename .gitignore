@@ -29,6 +29,7 @@ tmp*/
 .*.swp
 *.komodoproject
 *.sublime-*
+.vscode/
 
 # Precompiled Headers
 *.gch
