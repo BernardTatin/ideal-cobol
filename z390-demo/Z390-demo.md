@@ -1,6 +1,6 @@
 # _z390_ demo
 
-All the _COBOL_ files (extension `.CBL`) come from the (z390 project)[http://sourceforge.net/projects/z390/files/z390_v1506/].
+All the _COBOL_ files (extension `.CBL`) come from the [z390 project](http://sourceforge.net/projects/z390/files/z390_v1506/).
 
 ## notes
 
