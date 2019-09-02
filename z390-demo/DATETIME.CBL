@@ -33,7 +33,9 @@
 
        PROCEDURE DIVISION.
        MAINLINE.
-           DISPLAY 'DATETIME STARTED'
+      *    DISPLAY 'DATETIME STARTED'
+      *
+      *    Reads date, time and week day from the system
            ACCEPT SYSTEM-WEEKDAY FROM DAY-OF-WEEK.
            ACCEPT SYSTEM-DATE FROM DATE.
            ACCEPT SYSTEM-TIME FROM TIME.
@@ -65,11 +67,13 @@
 
            MOVE SYSTEM-DAY TO HEADER-DAY.
 
+      *    British time
            IF SYSTEM-HOUR IS LESS THAN 12
               MOVE 'AM' TO HEADER-AM-PM
            ELSE
               MOVE 'PM' TO HEADER-AM-PM
-              IF SYSTEM-HOUR IS NOT LESS THAN 13
+      *       IF SYSTEM-HOUR IS NOT LESS THAN 13
+              IF SYSTEM-HOUR IS GREATER 12
                  SUBTRACT 12 FROM SYSTEM-HOUR
               END-IF
            END-IF.
@@ -78,5 +82,5 @@
            MOVE SYSTEM-MINUTE TO HEADER-MINUTE.
 
            DISPLAY HEADER-LINE.
-           DISPLAY 'DATATIME ENDED OK'
+      *    DISPLAY 'DATATIME ENDED OK'
            STOP RUN.
