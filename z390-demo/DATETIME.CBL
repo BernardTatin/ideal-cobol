@@ -1,5 +1,5 @@
        IDENTIFICATION DIVISION.
-       PROGRAM-ID.  FORMAT-DATE-EXAMPLE.
+       PROGRAM-ID.  DATETIME
        AUTHOR.      BILL ROGERS.
       * http://web.sxu.edu/rogers/cobol/datetime.html
        ENVIRONMENT DIVISION.
