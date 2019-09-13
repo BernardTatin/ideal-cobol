@@ -2,6 +2,15 @@
        PROGRAM-ID.  DATETIME
        AUTHOR.      BILL ROGERS.
       * http://web.sxu.edu/rogers/cobol/datetime.html
+      * Compile and run:
+      *   RainCode:
+      *     cobrc :StrictIBM=TRUE DATETIME.CBL&& rclrun DATETIME.dll
+      *   GNU Cobol:
+      *     cobc -std=ibm -Wcolumn-overflow -Wall -Wterminator -W -fixed -x -o DATETIME.EXE DATETIME.CBL && ./DATETIME.EXE
+      * Note: for GNU Cobol, -std can be standard, ibm, mvs
+
+
+       INITIAL.
        ENVIRONMENT DIVISION.
        DATA DIVISION.
        WORKING-STORAGE SECTION.
@@ -36,9 +45,15 @@
       *    DISPLAY 'DATETIME STARTED'
       *
       *    Reads date, time and week day from the system
-           ACCEPT SYSTEM-WEEKDAY FROM DAY-OF-WEEK.
-           ACCEPT SYSTEM-DATE FROM DATE.
-           ACCEPT SYSTEM-TIME FROM TIME.
+           ACCEPT
+               SYSTEM-WEEKDAY FROM DAY-OF-WEEK
+           END-ACCEPT.
+           ACCEPT
+               SYSTEM-DATE FROM DATE
+           END-ACCEPT.
+           ACCEPT
+               SYSTEM-TIME FROM TIME
+           END-ACCEPT.
 
            EVALUATE SYSTEM-WEEKDAY
                WHEN  2  MOVE 'Mon' TO HEADER-WEEKDAY
@@ -74,13 +89,16 @@
               MOVE 'PM' TO HEADER-AM-PM
       *       IF SYSTEM-HOUR IS NOT LESS THAN 13
               IF SYSTEM-HOUR IS GREATER 12
-                 SUBTRACT 12 FROM SYSTEM-HOUR
+                 SUBTRACT
+                   12 FROM SYSTEM-HOUR
+                 END-SUBTRACT
               END-IF
            END-IF.
            MOVE SYSTEM-HOUR TO HEADER-HOUR.
 
            MOVE SYSTEM-MINUTE TO HEADER-MINUTE.
 
-           DISPLAY HEADER-LINE.
+           DISPLAY HEADER-LINE
+           END-DISPLAY.
       *    DISPLAY 'DATATIME ENDED OK'
            STOP RUN.
