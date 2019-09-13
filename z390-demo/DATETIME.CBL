@@ -39,6 +39,10 @@
           02 HEADER-MINUTE          PIC 99.
           02                        PIC X        VALUE SPACE.
           02 HEADER-AM-PM           PIC X(2).
+          02                        PIC X(5)     VALUE ' MIL '.
+          02 HEADER-MHOUR           PIC Z9.
+          02                        PIC X        VALUE ':'.
+          02 HEADER-MMINUTE         PIC 99.
 
        PROCEDURE DIVISION.
        MAINLINE.
@@ -82,20 +86,21 @@
 
            MOVE SYSTEM-DAY TO HEADER-DAY.
 
+           MOVE SYSTEM-HOUR TO HEADER-MHOUR.
+           MOVE SYSTEM-MINUTE TO HEADER-MMINUTE.
       *    British time
            IF SYSTEM-HOUR IS LESS THAN 12
               MOVE 'AM' TO HEADER-AM-PM
            ELSE
               MOVE 'PM' TO HEADER-AM-PM
       *       IF SYSTEM-HOUR IS NOT LESS THAN 13
-              IF SYSTEM-HOUR IS GREATER 12
+              IF SYSTEM-HOUR IS GREATER THAN 12
                  SUBTRACT
                    12 FROM SYSTEM-HOUR
                  END-SUBTRACT
               END-IF
            END-IF.
            MOVE SYSTEM-HOUR TO HEADER-HOUR.
-
            MOVE SYSTEM-MINUTE TO HEADER-MINUTE.
 
            DISPLAY HEADER-LINE
