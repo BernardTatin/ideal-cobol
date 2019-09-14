@@ -11,6 +11,7 @@
 
 
        INITIAL.
+
        ENVIRONMENT DIVISION.
        DATA DIVISION.
        WORKING-STORAGE SECTION.
@@ -38,7 +39,7 @@
           02                        PIC X        VALUE ':'.
           02 HEADER-MINUTE          PIC 99.
           02                        PIC X        VALUE SPACE.
-          02 HEADER-AM-PM           PIC X(2).
+          02 HEADER-AM-PM           PIC X(2)     VALUE '!!'.
           02                        PIC X(5)     VALUE ' MIL '.
           02 HEADER-MHOUR           PIC Z9.
           02                        PIC X        VALUE ':'.
@@ -49,15 +50,14 @@
       *    DISPLAY 'DATETIME STARTED'
       *
       *    Reads date, time and week day from the system
-           ACCEPT
-               SYSTEM-WEEKDAY FROM DAY-OF-WEEK
-           END-ACCEPT.
-           ACCEPT
-               SYSTEM-DATE FROM DATE
-           END-ACCEPT.
-           ACCEPT
-               SYSTEM-TIME FROM TIME
-           END-ACCEPT.
+           ACCEPT SYSTEM-WEEKDAY FROM DAY-OF-WEEK.
+      * GNU Cobol: the -std=ibm-strict option does not support this
+      *    but RainCode Cobol says nothing.
+      *    END-ACCEPT.
+           ACCEPT SYSTEM-DATE FROM DATE.
+      *    END-ACCEPT.
+           ACCEPT SYSTEM-TIME FROM TIME.
+      *    END-ACCEPT.
 
            EVALUATE SYSTEM-WEEKDAY
                WHEN  2  MOVE 'Mon' TO HEADER-WEEKDAY
@@ -103,7 +103,7 @@
            MOVE SYSTEM-HOUR TO HEADER-HOUR.
            MOVE SYSTEM-MINUTE TO HEADER-MINUTE.
 
-           DISPLAY HEADER-LINE
-           END-DISPLAY.
+           DISPLAY HEADER-LINE.
+      *    END-DISPLAY.
       *    DISPLAY 'DATATIME ENDED OK'
            STOP RUN.
