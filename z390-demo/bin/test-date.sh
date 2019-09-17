@@ -1,11 +1,14 @@
 #!/bin/sh
 
+. ~/bin/cobol.env.sh
+
 cd $(dirname $0)
 ici=$(pwd)
 tmpdir=$(dirname ${ici})/tmpdir
 mkdir -p ${tmpdir}
 cd ${tmpdir}
 
+date -R
 echo "Compile and run with RainCode Cobol"
 cobrc :StrictIBM=TRUE ../DATETIME.CBL \
   || { echo "cobrc failed"; exit 1; }

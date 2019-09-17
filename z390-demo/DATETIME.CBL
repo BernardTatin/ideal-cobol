@@ -47,8 +47,19 @@
 
        PROCEDURE DIVISION.
        MAINLINE.
-      *    DISPLAY 'DATETIME STARTED'
-      *
+
+           PERFORM READ-SYSTEM-DATE-TIME
+           PERFORM GET-WEEKDAY-NAME
+           PERFORM GET-MONTH-NAME
+           PERFORM FILL-HEADER-LINE
+
+           DISPLAY HEADER-LINE.
+      * GNU Cobol: the -std=ibm-strict option does not support this
+      *    but RainCode Cobol says nothing.
+      *    END-DISPLAY.
+           STOP RUN.
+
+       READ-SYSTEM-DATE-TIME SECTION.
       *    Reads date, time and week day from the system
            ACCEPT SYSTEM-WEEKDAY FROM DAY-OF-WEEK.
       * GNU Cobol: the -std=ibm-strict option does not support this
@@ -58,17 +69,21 @@
       *    END-ACCEPT.
            ACCEPT SYSTEM-TIME FROM TIME.
       *    END-ACCEPT.
+       READ-SYSTEM-DATE-TIME-EXIT. EXIT.
 
+       GET-WEEKDAY-NAME SECTION.
            EVALUATE SYSTEM-WEEKDAY
+               WHEN  1  MOVE 'Sun' TO HEADER-WEEKDAY
                WHEN  2  MOVE 'Mon' TO HEADER-WEEKDAY
                WHEN  3  MOVE 'Tue' TO HEADER-WEEKDAY
                WHEN  4  MOVE 'Wed' TO HEADER-WEEKDAY
                WHEN  5  MOVE 'Thu' TO HEADER-WEEKDAY
                WHEN  6  MOVE 'Fri' TO HEADER-WEEKDAY
                WHEN  7  MOVE 'Sat' TO HEADER-WEEKDAY
-               WHEN  1  MOVE 'Sun' TO HEADER-WEEKDAY
            END-EVALUATE.
+       GET-WEEKDAY-NAME-EXIT.
 
+       GET-MONTH-NAME SECTION.
            EVALUATE SYSTEM-MONTH
                WHEN  1  MOVE 'Jan' TO HEADER-MONTH
                WHEN  2  MOVE 'Feb' TO HEADER-MONTH
@@ -83,7 +98,9 @@
                WHEN 11  MOVE 'Nov' TO HEADER-MONTH
                WHEN 12  MOVE 'Dec' TO HEADER-MONTH
            END-EVALUATE.
+       GET-MONTH-NAME-EXIT.
 
+       FILL-HEADER-LINE SECTION.
            MOVE SYSTEM-DAY TO HEADER-DAY.
 
            MOVE SYSTEM-HOUR TO HEADER-MHOUR.
@@ -102,10 +119,4 @@
            END-IF.
            MOVE SYSTEM-HOUR TO HEADER-HOUR.
            MOVE SYSTEM-MINUTE TO HEADER-MINUTE.
-
-           DISPLAY HEADER-LINE.
-      * GNU Cobol: the -std=ibm-strict option does not support this
-      *    but RainCode Cobol says nothing.
-      *    END-DISPLAY.
-      *    DISPLAY 'DATATIME ENDED OK'
-           STOP RUN.
+       FILL-HEADER-LINE-EXIT.
