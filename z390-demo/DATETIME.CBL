@@ -1,7 +1,17 @@
        IDENTIFICATION DIVISION.
-       PROGRAM-ID.  FORMAT-DATE-EXAMPLE.
+       PROGRAM-ID.  DATETIME
        AUTHOR.      BILL ROGERS.
       * http://web.sxu.edu/rogers/cobol/datetime.html
+      * Compile and run:
+      *   RainCode:
+      *     cobrc :StrictIBM=TRUE DATETIME.CBL&& rclrun DATETIME.dll
+      *   GNU Cobol:
+      *     cobc -std=ibm -Wcolumn-overflow -Wall -Wterminator -W -fixed -x -o DATETIME.EXE DATETIME.CBL && ./DATETIME.EXE
+      * Note: for GNU Cobol, -std can be standard, ibm, mvs
+
+
+       INITIAL.
+
        ENVIRONMENT DIVISION.
        DATA DIVISION.
        WORKING-STORAGE SECTION.
@@ -29,14 +39,25 @@
           02                        PIC X        VALUE ':'.
           02 HEADER-MINUTE          PIC 99.
           02                        PIC X        VALUE SPACE.
-          02 HEADER-AM-PM           PIC X(2).
+          02 HEADER-AM-PM           PIC X(2)     VALUE '!!'.
+          02 HEADER-MIL             PIC X(5)     VALUE ' MIL '.
+          02 HEADER-MHOUR           PIC Z9.
+          02                        PIC X        VALUE ':'.
+          02 HEADER-MMINUTE         PIC 99.
 
        PROCEDURE DIVISION.
        MAINLINE.
-           DISPLAY 'DATETIME STARTED'
+      *    DISPLAY 'DATETIME STARTED'
+      *
+      *    Reads date, time and week day from the system
            ACCEPT SYSTEM-WEEKDAY FROM DAY-OF-WEEK.
+      * GNU Cobol: the -std=ibm-strict option does not support this
+      *    but RainCode Cobol says nothing.
+      *    END-ACCEPT.
            ACCEPT SYSTEM-DATE FROM DATE.
+      *    END-ACCEPT.
            ACCEPT SYSTEM-TIME FROM TIME.
+      *    END-ACCEPT.
 
            EVALUATE SYSTEM-WEEKDAY
                WHEN  2  MOVE 'Mon' TO HEADER-WEEKDAY
@@ -65,18 +86,26 @@
 
            MOVE SYSTEM-DAY TO HEADER-DAY.
 
+           MOVE SYSTEM-HOUR TO HEADER-MHOUR.
+           MOVE SYSTEM-MINUTE TO HEADER-MMINUTE.
+      *    British time
            IF SYSTEM-HOUR IS LESS THAN 12
               MOVE 'AM' TO HEADER-AM-PM
            ELSE
               MOVE 'PM' TO HEADER-AM-PM
-              IF SYSTEM-HOUR IS NOT LESS THAN 13
-                 SUBTRACT 12 FROM SYSTEM-HOUR
+      *       IF SYSTEM-HOUR IS NOT LESS THAN 13
+              IF SYSTEM-HOUR IS GREATER THAN 12
+                 SUBTRACT
+                   12 FROM SYSTEM-HOUR
+                 END-SUBTRACT
               END-IF
            END-IF.
            MOVE SYSTEM-HOUR TO HEADER-HOUR.
-
            MOVE SYSTEM-MINUTE TO HEADER-MINUTE.
 
            DISPLAY HEADER-LINE.
-           DISPLAY 'DATATIME ENDED OK'
+      * GNU Cobol: the -std=ibm-strict option does not support this
+      *    but RainCode Cobol says nothing.
+      *    END-DISPLAY.
+      *    DISPLAY 'DATATIME ENDED OK'
            STOP RUN.

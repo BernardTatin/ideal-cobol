@@ -29,6 +29,7 @@ tmp*/
 .*.swp
 *.komodoproject
 *.sublime-*
+.vscode/
 
 # Precompiled Headers
 *.gch
@@ -48,6 +49,7 @@ tmp*/
 
 # Executables
 *.exe
+*.EXE
 *.out
 *.app
 *.i*86
