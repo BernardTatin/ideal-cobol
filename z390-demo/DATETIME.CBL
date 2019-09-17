@@ -48,10 +48,10 @@
        PROCEDURE DIVISION.
        MAINLINE.
 
-           PERFORM READ-SYSTEM-DATE-TIME
-           PERFORM GET-WEEKDAY-NAME
-           PERFORM GET-MONTH-NAME
-           PERFORM FILL-HEADER-LINE
+           PERFORM READ-SYSTEM-DATE-TIME.
+           PERFORM GET-WEEKDAY-NAME.
+           PERFORM GET-MONTH-NAME.
+           PERFORM FILL-HEADER-LINE.
 
            DISPLAY HEADER-LINE.
       * GNU Cobol: the -std=ibm-strict option does not support this
@@ -69,7 +69,6 @@
       *    END-ACCEPT.
            ACCEPT SYSTEM-TIME FROM TIME.
       *    END-ACCEPT.
-       READ-SYSTEM-DATE-TIME-EXIT. EXIT.
 
        GET-WEEKDAY-NAME SECTION.
            EVALUATE SYSTEM-WEEKDAY
@@ -81,7 +80,6 @@
                WHEN  6  MOVE 'Fri' TO HEADER-WEEKDAY
                WHEN  7  MOVE 'Sat' TO HEADER-WEEKDAY
            END-EVALUATE.
-       GET-WEEKDAY-NAME-EXIT.
 
        GET-MONTH-NAME SECTION.
            EVALUATE SYSTEM-MONTH
@@ -98,7 +96,6 @@
                WHEN 11  MOVE 'Nov' TO HEADER-MONTH
                WHEN 12  MOVE 'Dec' TO HEADER-MONTH
            END-EVALUATE.
-       GET-MONTH-NAME-EXIT.
 
        FILL-HEADER-LINE SECTION.
            MOVE SYSTEM-DAY TO HEADER-DAY.
@@ -119,4 +116,3 @@
            END-IF.
            MOVE SYSTEM-HOUR TO HEADER-HOUR.
            MOVE SYSTEM-MINUTE TO HEADER-MINUTE.
-       FILL-HEADER-LINE-EXIT.
