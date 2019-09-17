@@ -40,7 +40,7 @@
           02 HEADER-MINUTE          PIC 99.
           02                        PIC X        VALUE SPACE.
           02 HEADER-AM-PM           PIC X(2)     VALUE '!!'.
-          02                        PIC X(5)     VALUE ' MIL '.
+          02 HEADER-MIL             PIC X(5)     VALUE ' MIL '.
           02 HEADER-MHOUR           PIC Z9.
           02                        PIC X        VALUE ':'.
           02 HEADER-MMINUTE         PIC 99.
@@ -104,6 +104,8 @@
            MOVE SYSTEM-MINUTE TO HEADER-MINUTE.
 
            DISPLAY HEADER-LINE.
+      * GNU Cobol: the -std=ibm-strict option does not support this
+      *    but RainCode Cobol says nothing.
       *    END-DISPLAY.
       *    DISPLAY 'DATATIME ENDED OK'
            STOP RUN.
