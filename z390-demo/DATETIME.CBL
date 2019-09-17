@@ -28,6 +28,11 @@
           02 SYSTEM-SECOND          PIC 99.
           02 SYSTEM-HUNDREDTH       PIC 99.
 
+       01 GB-WEEKDAY-TABLE.
+           05 GB-WEEKDAY-NAMES PIC X(5) OCCURS 7 TIMES.
+       01 FR-WEEKDAY-TABLE.
+           05 FR-WEEKDAY-NAMES PIC X(5) OCCURS 7 TIMES.
+
        01 ENGLISH-LINE.
           02 ENGLISH-WEEKDAY        PIC X(5).
           02                        PIC X        VALUE SPACE.
@@ -58,12 +63,14 @@
        PROCEDURE DIVISION.
        MAINLINE.
 
+           PERFORM INIT-GB.
            PERFORM READ-SYSTEM-DATE-TIME.
            PERFORM GET-GB-WEEKDAY-NAME.
            PERFORM GET-GB-MONTH-NAME.
            PERFORM FILL-ENGLISH-LINE.
            DISPLAY ENGLISH-LINE.
 
+           PERFORM INIT-FR.
            PERFORM READ-SYSTEM-DATE-TIME.
            PERFORM GET-FR-WEEKDAY-NAME.
            PERFORM GET-FR-MONTH-NAME.
@@ -73,6 +80,15 @@
       *    but RainCode Cobol says nothing.
       *    END-DISPLAY.
            STOP RUN.
+
+       init-gb section.
+           move 'Mon' to GB-WEEKDAY-NAMES(1).
+           move 'Tue' to GB-WEEKDAY-NAMES(2).
+           move 'Wed' to GB-WEEKDAY-NAMES(3).
+           move 'Thu' to GB-WEEKDAY-NAMES(4).
+           move 'Fri' to GB-WEEKDAY-NAMES(5).
+           move 'Sat' to GB-WEEKDAY-NAMES(6).
+           move 'Sun' to GB-WEEKDAY-NAMES(7).
 
        READ-SYSTEM-DATE-TIME SECTION.
       *    Reads date, time and week day from the system
@@ -86,15 +102,7 @@
       *    END-ACCEPT.
 
        GET-GB-WEEKDAY-NAME SECTION.
-           EVALUATE SYSTEM-WEEKDAY
-               WHEN  1  MOVE 'Mon' TO ENGLISH-WEEKDAY
-               WHEN  2  MOVE 'Tue' TO ENGLISH-WEEKDAY
-               WHEN  3  MOVE 'Wed' TO ENGLISH-WEEKDAY
-               WHEN  4  MOVE 'Thu' TO ENGLISH-WEEKDAY
-               WHEN  5  MOVE 'Fri' TO ENGLISH-WEEKDAY
-               WHEN  6  MOVE 'Sat' TO ENGLISH-WEEKDAY
-               WHEN  7  MOVE 'Sun' TO ENGLISH-WEEKDAY
-           END-EVALUATE.
+           move GB-WEEKDAY-NAMES(SYSTEM-WEEKDAY) to ENGLISH-WEEKDAY.
 
        GET-GB-MONTH-NAME SECTION.
            EVALUATE SYSTEM-MONTH
@@ -132,16 +140,17 @@
            MOVE SYSTEM-SECOND TO ENGLISH-SECOND.
 
 
+       init-fr section.
+           move 'Lun' to FR-WEEKDAY-NAMES(1).
+           move 'Mar' to FR-WEEKDAY-NAMES(2).
+           move 'Mer' to FR-WEEKDAY-NAMES(3).
+           move 'Jeu' to FR-WEEKDAY-NAMES(4).
+           move 'Ven' to FR-WEEKDAY-NAMES(5).
+           move 'Sam' to FR-WEEKDAY-NAMES(6).
+           move 'Dim' to FR-WEEKDAY-NAMES(7).
+
        GET-FR-WEEKDAY-NAME SECTION.
-           EVALUATE SYSTEM-WEEKDAY
-               WHEN  1  MOVE 'Lun' TO FRENCH-WEEKDAY
-               WHEN  2  MOVE 'Mar' TO FRENCH-WEEKDAY
-               WHEN  3  MOVE 'Mer' TO FRENCH-WEEKDAY
-               WHEN  4  MOVE 'Jeu' TO FRENCH-WEEKDAY
-               WHEN  5  MOVE 'Ven' TO FRENCH-WEEKDAY
-               WHEN  6  MOVE 'Sam' TO FRENCH-WEEKDAY
-               WHEN  7  MOVE 'Dim' TO FRENCH-WEEKDAY
-           END-EVALUATE.
+           move FR-WEEKDAY-NAMES(SYSTEM-WEEKDAY) to FRENCH-WEEKDAY.
 
        GET-FR-MONTH-NAME SECTION.
            EVALUATE SYSTEM-MONTH
