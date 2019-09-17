@@ -38,6 +38,8 @@
           02 ENGLISH-HOUR           PIC Z9.
           02                        PIC X        VALUE ':'.
           02 ENGLISH-MINUTE         PIC 99.
+          02                        PIC X        VALUE ':'.
+          02 ENGLISH-SECOND         PIC 99.
           02                        PIC X        VALUE SPACE.
           02 ENGLISH-AM-PM          PIC X(2)     VALUE '!!'.
        01 FRENCH-LINE.
@@ -50,6 +52,8 @@
           02 FRENCH-HOUR            PIC Z9.
           02                        PIC X        VALUE ':'.
           02 FRENCH-MINUTE          PIC 99.
+          02                        PIC X        VALUE ':'.
+          02 FRENCH-SECOND          PIC 99.
 
        PROCEDURE DIVISION.
        MAINLINE.
@@ -125,6 +129,7 @@
            END-IF.
            MOVE SYSTEM-HOUR TO ENGLISH-HOUR.
            MOVE SYSTEM-MINUTE TO ENGLISH-MINUTE.
+           MOVE SYSTEM-SECOND TO ENGLISH-SECOND.
 
 
        GET-FR-WEEKDAY-NAME SECTION.
@@ -158,3 +163,4 @@
            MOVE SYSTEM-DAY TO FRENCH-DAY.
            MOVE SYSTEM-HOUR TO FRENCH-HOUR.
            MOVE SYSTEM-MINUTE TO FRENCH-MINUTE.
+           MOVE SYSTEM-SECOND TO FRENCH-SECOND.
