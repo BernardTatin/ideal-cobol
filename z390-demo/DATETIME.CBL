@@ -49,7 +49,7 @@
           02                        PIC X        VALUE SPACE.
           02 FRENCH-MONTH           PIC X(5).
           02                        PIC X        VALUE SPACE.
-          02 FRENCH-HOUR            PIC Z9.
+          02 FRENCH-HOUR            PIC 99.
           02                        PIC X        VALUE ':'.
           02 FRENCH-MINUTE          PIC 99.
           02                        PIC X        VALUE ':'.
@@ -87,13 +87,13 @@
 
        GET-GB-WEEKDAY-NAME SECTION.
            EVALUATE SYSTEM-WEEKDAY
-               WHEN  1  MOVE 'Sun' TO ENGLISH-WEEKDAY
-               WHEN  2  MOVE 'Mon' TO ENGLISH-WEEKDAY
-               WHEN  3  MOVE 'Tue' TO ENGLISH-WEEKDAY
-               WHEN  4  MOVE 'Wed' TO ENGLISH-WEEKDAY
-               WHEN  5  MOVE 'Thu' TO ENGLISH-WEEKDAY
-               WHEN  6  MOVE 'Fri' TO ENGLISH-WEEKDAY
-               WHEN  7  MOVE 'Sat' TO ENGLISH-WEEKDAY
+               WHEN  1  MOVE 'Mon' TO ENGLISH-WEEKDAY
+               WHEN  2  MOVE 'Tue' TO ENGLISH-WEEKDAY
+               WHEN  3  MOVE 'Wed' TO ENGLISH-WEEKDAY
+               WHEN  4  MOVE 'Thu' TO ENGLISH-WEEKDAY
+               WHEN  5  MOVE 'Fri' TO ENGLISH-WEEKDAY
+               WHEN  6  MOVE 'Sat' TO ENGLISH-WEEKDAY
+               WHEN  7  MOVE 'Sun' TO ENGLISH-WEEKDAY
            END-EVALUATE.
 
        GET-GB-MONTH-NAME SECTION.
@@ -134,26 +134,26 @@
 
        GET-FR-WEEKDAY-NAME SECTION.
            EVALUATE SYSTEM-WEEKDAY
-               WHEN  1  MOVE 'Dim' TO FRENCH-WEEKDAY
-               WHEN  2  MOVE 'Lun' TO FRENCH-WEEKDAY
-               WHEN  3  MOVE 'Mar' TO FRENCH-WEEKDAY
-               WHEN  4  MOVE 'Mer' TO FRENCH-WEEKDAY
-               WHEN  5  MOVE 'Jeu' TO FRENCH-WEEKDAY
-               WHEN  6  MOVE 'Ven' TO FRENCH-WEEKDAY
-               WHEN  7  MOVE 'Sam' TO FRENCH-WEEKDAY
+               WHEN  1  MOVE 'Lun' TO FRENCH-WEEKDAY
+               WHEN  2  MOVE 'Mar' TO FRENCH-WEEKDAY
+               WHEN  3  MOVE 'Mer' TO FRENCH-WEEKDAY
+               WHEN  4  MOVE 'Jeu' TO FRENCH-WEEKDAY
+               WHEN  5  MOVE 'Ven' TO FRENCH-WEEKDAY
+               WHEN  6  MOVE 'Sam' TO FRENCH-WEEKDAY
+               WHEN  7  MOVE 'Dim' TO FRENCH-WEEKDAY
            END-EVALUATE.
 
        GET-FR-MONTH-NAME SECTION.
            EVALUATE SYSTEM-MONTH
                WHEN  1  MOVE 'Jan' TO FRENCH-MONTH
                WHEN  2  MOVE 'Fév' TO FRENCH-MONTH
-               WHEN  3  MOVE 'Mar' TO FRENCH-MONTH
+               WHEN  3  MOVE 'Mars' TO FRENCH-MONTH
                WHEN  4  MOVE 'Avr' TO FRENCH-MONTH
                WHEN  5  MOVE 'Mai' TO FRENCH-MONTH
-               WHEN  6  MOVE 'Jun' TO FRENCH-MONTH
-               WHEN  7  MOVE 'Jul' TO FRENCH-MONTH
-               WHEN  8  MOVE 'Aou' TO FRENCH-MONTH
-               WHEN  9  MOVE 'Sep' TO FRENCH-MONTH
+               WHEN  6  MOVE 'Juin' TO FRENCH-MONTH
+               WHEN  7  MOVE 'Juil' TO FRENCH-MONTH
+               WHEN  8  MOVE 'Aout' TO FRENCH-MONTH
+               WHEN  9  MOVE 'Sept' TO FRENCH-MONTH
                WHEN 10  MOVE 'Oct' TO FRENCH-MONTH
                WHEN 11  MOVE 'Nov' TO FRENCH-MONTH
                WHEN 12  MOVE 'Déc' TO FRENCH-MONTH
