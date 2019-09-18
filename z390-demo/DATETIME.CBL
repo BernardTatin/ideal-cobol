@@ -2,6 +2,9 @@
        PROGRAM-ID.  DATETIME
        AUTHOR.      BILL ROGERS.
       * http://web.sxu.edu/rogers/cobol/datetime.html
+      *
+      * A lot of modifications by Bernard Tatin to (re)learn COBOL
+      *
       * Compile and run:
       *   RainCode:
       *     cobrc :StrictIBM=TRUE DATETIME.CBL&& rclrun DATETIME.dll
@@ -13,8 +16,11 @@
        INITIAL.
 
        ENVIRONMENT DIVISION.
+
        DATA DIVISION.
        WORKING-STORAGE SECTION.
+
+      * Raw date read from the system
        01 SYSTEM-WEEKDAY            PIC 9.
 
        01 SYSTEM-DATE.
@@ -28,6 +34,7 @@
           02 SYSTEM-SECOND          PIC 99.
           02 SYSTEM-HUNDREDTH       PIC 99.
 
+      * Week days names in English
        01 GB-WEEKDAY-TABLE.
            05 FILLER PIC X(5) VALUE 'Mon'.
            05 FILLER PIC X(5) VALUE 'Tue'.
@@ -39,6 +46,24 @@
        01 FILLER REDEFINES GB-WEEKDAY-TABLE.
            05 GB-WEEKDAY-NAMES OCCURS 7 TIMES PIC X(5).
 
+      * Months names in English
+       01 GB-MONTH-TABLE.
+           05 FILLER PIC X(5) VALUE 'Jan'.
+           05 FILLER PIC X(5) VALUE 'Feb'.
+           05 FILLER PIC X(5) VALUE 'Mar'.
+           05 FILLER PIC X(5) VALUE 'Apr'.
+           05 FILLER PIC X(5) VALUE 'May'.
+           05 FILLER PIC X(5) VALUE 'Jun'.
+           05 FILLER PIC X(5) VALUE 'Jul'.
+           05 FILLER PIC X(5) VALUE 'Aug'.
+           05 FILLER PIC X(5) VALUE 'Sep'.
+           05 FILLER PIC X(5) VALUE 'Oct'.
+           05 FILLER PIC X(5) VALUE 'Nov'.
+           05 FILLER PIC X(5) VALUE 'Dec'.
+       01 FILLER REDEFINES GB-MONTH-TABLE.
+           05 GB-MONTH-NAMES OCCURS 12 TIMES PIC X(5).
+
+      * Week days names in French
        01 FR-WEEKDAY-TABLE.
            05 FILLER PIC X(5) VALUE 'Lun'.
            05 FILLER PIC X(5) VALUE 'Mar'.
@@ -50,6 +75,24 @@
        01 FILLER REDEFINES FR-WEEKDAY-TABLE.
            05 FR-WEEKDAY-NAMES OCCURS 7 TIMES PIC X(5).
 
+      * Months names in English
+       01 FR-MONTH-TABLE.
+           05 FILLER PIC X(5) VALUE 'Jan'.
+           05 FILLER PIC X(5) VALUE 'Fév'.
+           05 FILLER PIC X(5) VALUE 'Mars'.
+           05 FILLER PIC X(5) VALUE 'Avr'.
+           05 FILLER PIC X(5) VALUE 'Mai'.
+           05 FILLER PIC X(5) VALUE 'Juin'.
+           05 FILLER PIC X(5) VALUE 'Juil'.
+           05 FILLER PIC X(5) VALUE 'Aout'.
+           05 FILLER PIC X(5) VALUE 'Sept'.
+           05 FILLER PIC X(5) VALUE 'Oct'.
+           05 FILLER PIC X(5) VALUE 'Nov'.
+           05 FILLER PIC X(5) VALUE 'Déc'.
+       01 FILLER REDEFINES FR-MONTH-TABLE.
+           05 FR-MONTH-NAMES OCCURS 12 TIMES PIC X(5).
+
+      * Output buffer in English
        01 ENGLISH-LINE.
           02 ENGLISH-WEEKDAY        PIC X(5).
           02                        PIC X        VALUE SPACE.
@@ -64,6 +107,7 @@
           02 ENGLISH-SECOND         PIC 99.
           02                        PIC X        VALUE SPACE.
           02 ENGLISH-AM-PM          PIC X(2)     VALUE '!!'.
+      * Output buffer in French
        01 FRENCH-LINE.
           02 FRENCH-WEEKDAY         PIC X(5).
           02                        PIC X        VALUE SPACE.
@@ -79,17 +123,13 @@
 
 
        PROCEDURE DIVISION.
-       MAINLINE.
 
+       MAINLINE.
            PERFORM READ-SYSTEM-DATE-TIME.
-           PERFORM GET-GB-WEEKDAY-NAME.
-           PERFORM GET-GB-MONTH-NAME.
            PERFORM FILL-ENGLISH-LINE.
            DISPLAY ENGLISH-LINE.
 
            PERFORM READ-SYSTEM-DATE-TIME.
-           PERFORM GET-FR-WEEKDAY-NAME.
-           PERFORM GET-FR-MONTH-NAME.
            PERFORM FILL-FRENCH-LINE.
            DISPLAY FRENCH-LINE.
       * GNU Cobol: the -std=ibm-strict option does not support this
@@ -108,26 +148,9 @@
            ACCEPT SYSTEM-TIME FROM TIME.
       *    END-ACCEPT.
 
-       GET-GB-WEEKDAY-NAME SECTION.
-           move GB-WEEKDAY-NAMES(SYSTEM-WEEKDAY) to ENGLISH-WEEKDAY.
-
-       GET-GB-MONTH-NAME SECTION.
-           EVALUATE SYSTEM-MONTH
-               WHEN  1  MOVE 'Jan' TO ENGLISH-MONTH
-               WHEN  2  MOVE 'Feb' TO ENGLISH-MONTH
-               WHEN  3  MOVE 'Mar' TO ENGLISH-MONTH
-               WHEN  4  MOVE 'Apr' TO ENGLISH-MONTH
-               WHEN  5  MOVE 'May' TO ENGLISH-MONTH
-               WHEN  6  MOVE 'Jun' TO ENGLISH-MONTH
-               WHEN  7  MOVE 'Jul' TO ENGLISH-MONTH
-               WHEN  8  MOVE 'Aug' TO ENGLISH-MONTH
-               WHEN  9  MOVE 'Sep' TO ENGLISH-MONTH
-               WHEN 10  MOVE 'Oct' TO ENGLISH-MONTH
-               WHEN 11  MOVE 'Nov' TO ENGLISH-MONTH
-               WHEN 12  MOVE 'Dec' TO ENGLISH-MONTH
-           END-EVALUATE.
-
        FILL-ENGLISH-LINE SECTION.
+           MOVE GB-WEEKDAY-NAMES(SYSTEM-WEEKDAY) TO ENGLISH-WEEKDAY.
+           MOVE GB-MONTH-NAMES(SYSTEM-MONTH) TO ENGLISH-MONTH.
            MOVE SYSTEM-DAY TO ENGLISH-DAY.
 
       *    British time
@@ -146,26 +169,9 @@
            MOVE SYSTEM-MINUTE TO ENGLISH-MINUTE.
            MOVE SYSTEM-SECOND TO ENGLISH-SECOND.
 
-       GET-FR-WEEKDAY-NAME SECTION.
-           move FR-WEEKDAY-NAMES(SYSTEM-WEEKDAY) to FRENCH-WEEKDAY.
-
-       GET-FR-MONTH-NAME SECTION.
-           EVALUATE SYSTEM-MONTH
-               WHEN  1  MOVE 'Jan' TO FRENCH-MONTH
-               WHEN  2  MOVE 'Fév' TO FRENCH-MONTH
-               WHEN  3  MOVE 'Mars' TO FRENCH-MONTH
-               WHEN  4  MOVE 'Avr' TO FRENCH-MONTH
-               WHEN  5  MOVE 'Mai' TO FRENCH-MONTH
-               WHEN  6  MOVE 'Juin' TO FRENCH-MONTH
-               WHEN  7  MOVE 'Juil' TO FRENCH-MONTH
-               WHEN  8  MOVE 'Aout' TO FRENCH-MONTH
-               WHEN  9  MOVE 'Sept' TO FRENCH-MONTH
-               WHEN 10  MOVE 'Oct' TO FRENCH-MONTH
-               WHEN 11  MOVE 'Nov' TO FRENCH-MONTH
-               WHEN 12  MOVE 'Déc' TO FRENCH-MONTH
-           END-EVALUATE.
-
        FILL-FRENCH-LINE SECTION.
+           MOVE FR-WEEKDAY-NAMES(SYSTEM-WEEKDAY) TO FRENCH-WEEKDAY.
+           MOVE FR-MONTH-NAMES(SYSTEM-MONTH) TO FRENCH-MONTH.
            MOVE SYSTEM-DAY TO FRENCH-DAY.
            MOVE SYSTEM-HOUR TO FRENCH-HOUR.
            MOVE SYSTEM-MINUTE TO FRENCH-MINUTE.
